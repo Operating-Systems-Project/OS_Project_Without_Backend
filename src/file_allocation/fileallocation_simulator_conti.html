@@ -17,7 +17,29 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
 
+        <style>
+            .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button4 {
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+}
 
+.button4:hover {background-color: #e7e7e7;}
+
+        </style>
     <link href="../../template.css" rel="stylesheet">
         
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -88,6 +110,7 @@
                 <form>
                 <input type="button" class="button2" value="Submit"  onclick="filealgo(document.getElementById('algorithm').value,document.getElementById('bitstream-input').value,document.getElementById('initial-input').value,document.getElementById('final-input').value)">
             </form>
+            
             </div>
           </div>
             <br>
@@ -164,7 +187,8 @@
                          count_blocks=count_blocks+count;
                         for(k=0;k<count;k++)
                         {
-                            text=text+(allocate[k]+1)+"------>";
+                           
+                            text=text+"<span> <button class='button button4'>"+(allocate[k]+1)+"</button> </span>"+"&#8594";
                             // document.getElementById("Blocks_allocated").innerHTML="Block Alloted: " +allocate[i];
                         }
                          text1=text1+"Block Alloted: "+text+"<br>";

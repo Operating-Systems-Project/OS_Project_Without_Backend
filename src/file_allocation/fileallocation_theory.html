@@ -59,11 +59,7 @@ The directory entry for a file with contiguous<br> allocation contains<br>
 
 
 In this scheme, each file is a linked list of disk blocks which need not be contiguous. The disk blocks can be scattered anywhere on the disk.
-The directory entry contains a pointer to the starting and the ending file block. Each block contains a pointer to the next block occupied by the file.<br><br><a href=http://127.0.0.1:5500/fileallocation_simulator_link.html><button style="background-color: black;color:#00ff00;border-radius: 5px;">Simulator-2</button></a><br><br>
-<b>3- Indexed Allocation</b><br><br>
-
-In this scheme, a special block known as the Index block contains the pointers to all the blocks occupied by a file. Each file has its own index block. The ith entry in the index block contains the disk address of the ith file block.
-<br><br><a href=http://127.0.0.1:5500/fileallocation_simulator_indexed.html><button style="background-color: black;color:#00ff00;border-radius: 5px;">Simulator-3</button></a>
+The directory entry contains a pointer to the starting and the ending file block. Each block contains a pointer to the next block occupied by the file.<br><br><a href=http://127.0.0.1:5500/fileallocation_simulator_link.html><button style="background-color: black;color:#00ff00;border-radius: 5px;">Simulator-2</button></a>
             </p>
                 <!-- Write your code here -->
       </div>
