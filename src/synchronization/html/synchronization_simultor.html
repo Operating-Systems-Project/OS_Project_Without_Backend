@@ -18,7 +18,28 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
 
 
-    <link href="../../template.css" rel="stylesheet">
+    <link href="../../../template.css" rel="stylesheet">
+
+    <script>
+        
+    </script>
+
+    <style>
+      .starter-template{
+        text-align: center;
+      }
+
+      .btn-light{
+        padding: 1rem;
+        background-color: #424242 !important;
+        color: white;
+      }
+
+      .btn-light:hover, .btn-light:focus, .btn-light:active{
+        background-color: #212121 !important;
+        color: white !important;
+      }
+    </style>
   </head>
 
   <body>
@@ -34,13 +55,13 @@
         <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link " href="../../index.html">Home <span class="sr-only"></span></a>
+              <a class="nav-link " href="/index.html">Home <span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link current" href="#">Theory</a>
+              <a class="nav-link" href="synchronization_theory.html">Theory</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="synchronization_simultor.html">Simulator</a>
+              <a class="nav-link current" href="#">Simulator</a>
             </li>              
           </ul>            
         </div>
@@ -50,15 +71,12 @@
     <main role="main" class="container">
 
       <div class="starter-template">
-            <h3>Theory</h3>
-            <p>
-                On the basis of synchronization, processes are categorized as one of the following two types:
-
-Independent Process : Execution of one process does not affects the execution of other processes.
-Cooperative Process : Execution of one process affects the execution of other processes.
-Process synchronization problem arises in the case of Cooperative process also because resources are shared in Cooperative processes.    
-            </p>
-                <!-- Write your code here -->
+            <!-- Write your code here -->
+            <a class="btn btn-light" href="dining_philosophers.html">Dining Philosophers</a>
+            <a class="btn btn-light" href="producer_consumer.html">Producer Consumer</button>
+            <a class="btn btn-light" href="readers_writers.html">Readers Writers</a>
+            
+                
       </div>
 
     </main>

@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <title>Operating Systems Project</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+
+
+    <link href="../../../template.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/philosopher.css">
+
+
+    <style>
+        .starter-template{
+            text-align: center;
+        }
+
+    </style>
+    <script>
+        const THINKING = 0, HUNGRY = 1, EATING = 2;
+        const LOCKED = 0, UNLOCKED = 1;
+        const NUM = 5;
+
+        philosopherStates = [
+            [THINKING, THINKING,THINKING,THINKING,THINKING],
+            [HUNGRY, THINKING,THINKING,THINKING,THINKING],
+            [HUNGRY, THINKING,THINKING,THINKING,THINKING],
+            [HUNGRY, THINKING,THINKING,HUNGRY,THINKING],
+            [HUNGRY, THINKING,THINKING,HUNGRY,THINKING],
+            [HUNGRY, THINKING,THINKING,HUNGRY,THINKING],
+            [HUNGRY, THINKING,THINKING,EATING,THINKING],
+            [HUNGRY, THINKING,HUNGRY,EATING,THINKING],
+            [HUNGRY, THINKING,HUNGRY, EATING,THINKING],
+            [HUNGRY, THINKING,HUNGRY, EATING,THINKING],
+            [HUNGRY, THINKING,HUNGRY,THINKING,THINKING],
+            [HUNGRY, THINKING,HUNGRY,THINKING,HUNGRY],
+            [HUNGRY, THINKING,HUNGRY,THINKING,HUNGRY],
+            [HUNGRY, HUNGRY,HUNGRY,THINKING,HUNGRY],
+            [HUNGRY, HUNGRY,HUNGRY,HUNGRY,HUNGRY],
+            [HUNGRY, HUNGRY,HUNGRY,HUNGRY,HUNGRY],
+            [HUNGRY, HUNGRY,HUNGRY,HUNGRY,HUNGRY],
+        ]
+
+        lockStates = [
+            [UNLOCKED, UNLOCKED, UNLOCKED, UNLOCKED, UNLOCKED],
+            [UNLOCKED, UNLOCKED, UNLOCKED, UNLOCKED, UNLOCKED],
+            [LOCKED, UNLOCKED, UNLOCKED, UNLOCKED, UNLOCKED],
+            [LOCKED, UNLOCKED, UNLOCKED, UNLOCKED, UNLOCKED],
+            [LOCKED, UNLOCKED, UNLOCKED, LOCKED, UNLOCKED],
+            [LOCKED, UNLOCKED, UNLOCKED, LOCKED, LOCKED],
+            [LOCKED, UNLOCKED, UNLOCKED, LOCKED, LOCKED],
+            [LOCKED, UNLOCKED, UNLOCKED, LOCKED, LOCKED],
+            [LOCKED, UNLOCKED, LOCKED, LOCKED, LOCKED],
+            [LOCKED, UNLOCKED, LOCKED, UNLOCKED, LOCKED],
+            [LOCKED, UNLOCKED, LOCKED, UNLOCKED, UNLOCKED], // 4 releases
+            [LOCKED, UNLOCKED, LOCKED, UNLOCKED, UNLOCKED],
+            [LOCKED, UNLOCKED, LOCKED, UNLOCKED, LOCKED],
+            [LOCKED, UNLOCKED, LOCKED, UNLOCKED, LOCKED],
+            [LOCKED, UNLOCKED, LOCKED, UNLOCKED, LOCKED],
+            [LOCKED, LOCKED, LOCKED, UNLOCKED, LOCKED],
+            [LOCKED, LOCKED, LOCKED, LOCKED, LOCKED],
+        ]
+
+        const philosopherNames = ['Plato', 'Aristotle', 'Socrates', 'Confucius', 'Pythagoras']
+
+        const status = [
+            'All philosophers are thinking',
+            [1, ]
+        ]
+
+        const code = [
+            'void *thinkEatRepeat() {',
+            'Hungry...',
+
+            'wait(&chopsticks[i]);',
+            'wait(&chopsticks[(i+1)%n]);',
+
+            'Eating...',
+
+            'signal(&chopsticks[i]);',
+            'signal(&chopsticks[(i+1)%n]);',   
+
+            '}'
+        ]
+
+        const messages = [
+            '',
+            'Plato is hungry',
+            'Plato acquired chopstick 1',
+            'Confucius is hungry',
+            'Confucius acquired chopstick 4',
+            'Confucius acquired chopstick 5',
+            'Confucius acquired both chopsticks and is eating',
+            'Socrates is hungry',
+            'Socrates acquired chopstick 3',
+            'Confucius released chopstick 4',
+            'Confucius released chopstick 5',
+            'Pythagoras is hungry',
+            'Pythagoras acquired chopstick 5',
+            'Aristotle is hungry',
+            'Confucius is hungry',
+            'Aristotle acquired chopstick 2',
+            'Confucius acquired chopstick 4'
+        ]
+
+        let counter = 1;
+
+        const classNames = ['thinking', 'hungry', 'eating'];
+
+        let philosopherCodeLine = [0, 0, 0, 0, 0];  
+        const codeChanges = [
+            -1, 0, 0, 3, 3, 3, 3, 2, 2, 3, 3, 4, 4, 1, 3, 1, 3
+        ]    
+        
+        console.log(code.length)
+
+        function removeCurrentLine(pid, line_no){
+            let codeLine = document.getElementById('code-p' + pid + '-line-' + line_no);
+            codeLine.classList.remove('current-line');
+        }
+
+        function makeCurrentLine(pid, line_no){
+            let codeLine = document.getElementById('code-p' + pid + '-line-' + line_no);
+            codeLine.classList.add('current-line');
+        }
+
+
+        function prev(){
+            document.getElementById('next-btn').disabled = false;
+            
+            counter--;
+            document.getElementById('counter').innerHTML = counter - 1 + ' / 16';
+            prevState();
+            if(counter == 1){
+                console.log('Start!');
+                document.getElementById('prev-btn').disabled = true;
+                document.getElementById('message').innerHTML = 'Click on Next to see the sequence of steps leading to a deadlock';
+            }
+            if(counter == 11){
+                removeCurrentLine(3, 0);
+                makeCurrentLine(3, 6);
+                philosopherCodeLine[3] = 6;
+            }
+        }
+
+        function next(){
+            document.getElementById('prev-btn').disabled = false;
+            
+            nextState();
+            document.getElementById('counter').innerHTML = counter + ' / 16';
+            counter++;
+            if(counter == lockStates.length){
+                console.log('Deadlock!');
+                document.getElementById('next-btn').disabled = true;
+            }
+            if(counter == 12){
+                removeCurrentLine(3, 6);
+                makeCurrentLine(3, 0);
+                philosopherCodeLine[3] = 0;
+            }
+        }
+
+        function nextState(){            
+
+            console.log('Counter = ', counter);
+            for(let i = 0; i < 5; i++){
+                let philosopher = document.getElementById('p' + i);
+                philosopher.className = '';
+                philosopher.classList.add('philosopher');
+                philosopher.classList.add(classNames[philosopherStates[counter][i]]);
+
+                let lock = document.getElementById('l' + i);;
+                lock.className = 'lock';
+                lock.classList.add((lockStates[counter][i] === UNLOCKED) ? "unlocked" : "locked");
+            }
+
+            let changed = codeChanges[counter];
+            removeCurrentLine(changed, philosopherCodeLine[changed])
+            philosopherCodeLine[changed] = (philosopherCodeLine[changed] + 1) % code[0].length;
+                // console.log("Code line ", philosopherCodeLine[changed]);
+            // console.log("Code line ", philosopherCodeLine[changed]);
+            makeCurrentLine(changed, philosopherCodeLine[changed])
+            document.getElementById('message').innerHTML = messages[counter];
+            if(counter == 16){
+                document.getElementById('message').innerHTML += ' <br> It is a DEADLOCK!';
+            }
+        }
+
+
+        function prevState(){
+
+            console.log('Prev state Counter = ', counter);
+            for(let i = 0; i < 5; i++){
+                let philosopher = document.getElementById('p' + i);
+                philosopher.className = '';
+                philosopher.classList.add('philosopher');
+                philosopher.classList.add(classNames[philosopherStates[counter - 1][i]]);
+
+                let lock = document.getElementById('l' + i);;
+                lock.className = 'lock';
+                lock.classList.add((lockStates[counter - 1][i] === UNLOCKED) ? "unlocked" : "locked");
+            }
+
+            let changed = codeChanges[counter];
+            console.log(changed)
+            removeCurrentLine(changed, philosopherCodeLine[changed])
+            philosopherCodeLine[changed] = (philosopherCodeLine[changed] - 1 + code[0].length) % code[0].length;
+            
+            makeCurrentLine(changed, philosopherCodeLine[changed])
+            document.getElementById('message').innerHTML = messages[counter - 1];
+        }
+
+        function seatPhilosophers(){
+            let philosophers = document.getElementById('philosophers');
+
+            let count = 0;
+            philosopherNames.map(philosopher => {
+                let div = document.createElement('div');
+                div.innerHTML = philosopher
+                div.classList.add('philosopher');
+                div.setAttribute('id', 'p' + count);
+                philosophers.appendChild(div);
+                count++;
+            })
+
+            codePhilosophers();
+        }
+
+        function codePhilosophers(){
+
+            let codes = document.getElementById('codes');
+
+
+            let count = 0;
+            for(let i = 0; i < NUM; i++){
+                let outer = document.createElement('div');
+                outer.classList.add('outer')
+                let div = document.createElement('div');                    
+                div.classList.add('code');
+                let line_no = 0
+                div.setAttribute('id', 'code-p' + i);
+                let title = document.createElement('div');
+                title.classList.add('title-philosopher');
+                title.innerHTML = philosopherNames[i];
+                code.map(line => {
+                    let divLine = document.createElement('div');
+                    // divLine.classList.add('');
+                    divLine.setAttribute('id', 'code-p' + i + '-line-' + line_no);
+                    divLine.innerHTML = line;
+                    divLine.classList.add('code-line');
+                    if(line_no == 0 ){
+                        divLine.classList.add('current-line');
+                    }
+                    if(line_no != 0 && line_no != code.length - 1){
+                        divLine.classList.add('indent');
+                    }
+                    line_no++;
+                    div.appendChild(divLine);
+                })
+                outer.appendChild(title);
+                outer.appendChild(div);
+                codes.appendChild(outer);
+            }
+            
+        }
+    </script>
+  </head>
+
+  <body onload="seatPhilosophers()">
+
+    <div class="header bg-dark">
+      <div class="heading">
+         Dining Philosophers
+      </div> 
+      <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">         
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link " href="/index.html">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="synchronization_theory.html">Theory</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link current" href="synchronization_simultor.html">Simulator</a>
+            </li>              
+          </ul>            
+        </div>
+      </nav>                 
+    </div>
+
+    <main role="main" class="container">
+
+      <div class="starter-template">
+            <!-- Write your code here -->        
+            <div class="container">
+                <div>
+
+                    <button disabled id="prev-btn" class="btn btn-light next-btn" onclick="prev()">Previous</button>
+                    <button id="counter" disabled class="btn btn-light">0 / 16</button>
+                    <button id="next-btn" class="btn btn-light next-btn" onclick="next()">Next</button>
+                </div>
+
+                <div class="row">
+                    
+                    <div class="legend">
+                        <div class="title-philosopher">
+                            Legend
+                        </div>
+
+                        
+
+                        <div class="key-values">
+                            <div class="type">
+                                Philosophers
+                            </div>
+                            <div class="key-value"> 
+                                <div class="color thinking"></div>
+                                <div class="text">Thinking</div>
+                            </div>
+                            <div class="key-value"> 
+                                <div class="color hungry"></div>
+                                <div class="text">Hungry</div>
+                            </div>
+                            <div class="key-value"> 
+                                <div class="color eating"></div>
+                                <div class="text">Eating</div>
+                            </div>                            
+                        
+                        </div>
+                        
+
+                        <div class="key-values">
+                            <div class="type">
+                                Chopsticks
+                            </div>
+                            <div class="key-value"> 
+                                <div class="color locked"></div>
+                                <div class="text">Locked</div>
+                            </div>
+                            <div class="key-value"> 
+                                <div class="color unlocked"></div>
+                                <div class="text">Unlocked</div>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    
+                    <div class="philosophers" >
+                        <div class="title-philosopher">
+                            Philosophers
+                        </div>
+                        <div id="philosophers">
+
+                        </div>
+                    </div>
+                    <div class="locks">
+                        <div class="title-philosopher">
+                            Chopsticks
+                        </div>
+                        <div class="lock unlocked" id="l0">
+                            Chopstick 1
+                        </div>
+                        <div class="lock unlocked" id="l1">
+                            Chopstick 2
+                        </div>
+                        <div class="lock unlocked" id="l2">
+                            Chopstick 3
+                        </div>
+                        <div class="lock unlocked" id="l3">
+                            Chopstick 4
+                        </div>
+                        <div class="lock unlocked" id="l4">
+                            Chopstick 5
+                        </div>
+                    </div>
+            
+                    <div class="status" id="">
+                        <div class="title-philosopher">
+                            Status
+                        </div>
+                        <div class="message" id="message">
+
+                            Click on Next to see the sequence of steps leading to a deadlock
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="row">
+                    <div class="codes" id="codes">
+
+                    </div>
+                </div>        
+            </div>                
+      </div>
+
+    </main>
+  </body>
+</html>
