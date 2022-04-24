@@ -286,7 +286,7 @@ function drawChart() {
     var timer1 = document.getElementById("timer");
     pixel = 800 / t;
     for (var i = 0; i < gantt.length; i++) {
-        var divWidth = (gantt[i].end - gantt[i].start) * pixel;
+        var divWidth = (gantt[i].end -0.1 - gantt[i].start) * pixel;
         var d = document.createElement("div");
         d.setAttribute("class", "block");
         var id1 = gantt[i].id;
