@@ -57,7 +57,7 @@
                 size++;
                 console.log('Cleared interval')
                 stop();
-                alert('Buffer is empty', size);
+                alert('Buffer is empty!', size);
                 return;
             }
             if(size == 0){
@@ -79,7 +79,7 @@
                 size--;
                 console.log('Cleared interval')
                 stop();
-                alert('Buffer has reached limit', size);
+                alert('Buffer is full!', size);
                 return;
             }
             document.getElementById('consume').disabled = false;
@@ -116,7 +116,7 @@
 
     <div class="header bg-dark">
       <div class="heading">
-         Process Synchronization
+         Producer Consumer
       </div> 
       <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -165,12 +165,12 @@
                 <div class="codes">
                     <div class="producer-code code">
                         <div class="title">Producer</div>
-                        <div class="code-line"> void *producer() {</div>
-                        <div class="code-line"> sem_wait(&empty);</div>
-                        <div class="code-line"> sem_wait(&mutex);</div>
-                        <div class="code-line"> produce();</div>
-                        <div class="code-line"> sem_post(&mutex);</div>
-                        <div class="code-line"> sem_post(&full);</div>
+                        <div class="code-line "> void *producer() {</div>
+                        <div class="code-line indent"> sem_wait(&empty);</div>
+                        <div class="code-line indent"> sem_wait(&mutex);</div>
+                        <div class="code-line indent"> produce();</div>
+                        <div class="code-line indent"> sem_post(&mutex);</div>
+                        <div class="code-line indent"> sem_post(&full);</div>
                         <div class="code-line"> }</div>
                     </div>
                     <div class="status" id="status">
@@ -178,12 +178,12 @@
                     </div>
                     <div class="consumer-code code">
                         <div class="title">Consumer</div>
-                        <div class="code-line"> void *producer() {</div>
-                        <div class="code-line"> sem_wait(&full);</div>
-                        <div class="code-line"> sem_wait(&mutex);</div>
-                        <div class="code-line"> consume();</div>
-                        <div class="code-line"> sem_post(&mutex);</div>
-                        <div class="code-line"> sem_post(&empty);</div>
+                        <div class="code-line"> void *consumer() {</div>
+                        <div class="code-line indent"> sem_wait(&full);</div>
+                        <div class="code-line indent"> sem_wait(&mutex);</div>
+                        <div class="code-line indent"> consume();</div>
+                        <div class="code-line indent"> sem_post(&mutex);</div>
+                        <div class="code-line indent"> sem_post(&empty);</div>
                         <div class="code-line"> }</div>
                     </div>
                 </div>

@@ -58,6 +58,10 @@ td{
 
 .status{
     margin: 6rem;
-    background-color: #FAFAFA;
+    /* background-color: #FAFAFA; */
     flex-grow: 1;
+}
+
+.indent{
+    padding-left: 2rem;
 }

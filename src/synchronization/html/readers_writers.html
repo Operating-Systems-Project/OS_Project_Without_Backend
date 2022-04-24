@@ -110,7 +110,7 @@
 
     <div class="header bg-dark">
       <div class="heading">
-         Process Synchronization
+         Readers Writers
       </div> 
       <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -174,23 +174,23 @@
                 <div class="row">
                     <div class="codes" id="codes">
                         <div class="code">
-                            <div class="title">Consumer</div>
-                            <div class="code-line"> void *producer() {</div>
-                            <div class="code-line"> sem_wait(&full);</div>
-                            <div class="code-line"> sem_wait(&mutex);</div>
-                            <div class="code-line"> consume();</div>
-                            <div class="code-line"> sem_post(&mutex);</div>
-                            <div class="code-line"> sem_post(&empty);</div>
+                            <div class="title">Producer</div>
+                            <div class="code-line "> void *producer() {</div>
+                            <div class="code-line indent"> sem_wait(&full);</div>
+                            <div class="code-line indent"> sem_wait(&mutex);</div>
+                            <div class="code-line indent"> consume();</div>
+                            <div class="code-line indent"> sem_post(&mutex);</div>
+                            <div class="code-line indent"> sem_post(&empty);</div>
                             <div class="code-line"> }</div>
                         </div>
                         <div class="code">
                             <div class="title">Consumer</div>
-                            <div class="code-line"> void *producer() {</div>
-                            <div class="code-line"> sem_wait(&full);</div>
-                            <div class="code-line"> sem_wait(&mutex);</div>
-                            <div class="code-line"> consume();</div>
-                            <div class="code-line"> sem_post(&mutex);</div>
-                            <div class="code-line"> sem_post(&empty);</div>
+                            <div class="code-line "> void *writer() {</div>
+                            <div class="code-line indent"> sem_wait(&full);</div>
+                            <div class="code-line indent"> sem_wait(&mutex);</div>
+                            <div class="code-line indent"> consume();</div>
+                            <div class="code-line indent"> sem_post(&mutex);</div>
+                            <div class="code-line indent"> sem_post(&empty);</div>
                             <div class="code-line"> }</div>
                         </div>
                     </div>
