@@ -142,11 +142,12 @@
             document.getElementById('next-btn').disabled = false;
             
             counter--;
+            document.getElementById('counter').innerHTML = counter - 1 + ' / 16';
             prevState();
             if(counter == 1){
                 console.log('Start!');
                 document.getElementById('prev-btn').disabled = true;
-                document.getElementById('message').innerHTML = '';
+                document.getElementById('message').innerHTML = 'Click on Next to see the sequence of steps leading to a deadlock';
             }
             if(counter == 11){
                 removeCurrentLine(3, 0);
@@ -159,6 +160,7 @@
             document.getElementById('prev-btn').disabled = false;
             
             nextState();
+            document.getElementById('counter').innerHTML = counter + ' / 16';
             counter++;
             if(counter == lockStates.length){
                 console.log('Deadlock!');
@@ -192,6 +194,9 @@
             // console.log("Code line ", philosopherCodeLine[changed]);
             makeCurrentLine(changed, philosopherCodeLine[changed])
             document.getElementById('message').innerHTML = messages[counter];
+            if(counter == 16){
+                document.getElementById('message').innerHTML += ' <br> It is a DEADLOCK!';
+            }
         }
 
 
@@ -213,8 +218,7 @@
             console.log(changed)
             removeCurrentLine(changed, philosopherCodeLine[changed])
             philosopherCodeLine[changed] = (philosopherCodeLine[changed] - 1 + code[0].length) % code[0].length;
-            // console.log("Code line ", philosopherCodeLine[changed]);
-            // console.log("Code line ", philosopherCodeLine[changed]);
+            
             makeCurrentLine(changed, philosopherCodeLine[changed])
             document.getElementById('message').innerHTML = messages[counter - 1];
         }
@@ -301,44 +305,29 @@
     <main role="main" class="container">
 
       <div class="starter-template">
-            <!-- Write your code here -->
-
-            <!-- <h3>Dining Philosophers</h3> -->
-
-
-
-            <div>
-
-                <button disabled id="prev-btn" class="btn btn-light next-btn" onclick="prev()">Previous</button>
-                <button id="next-btn" class="btn btn-light next-btn" onclick="next()">Next</button>
-            </div>
-
-            <!-- <div class="graphics">
-                <div class="round-table"></div>
-            </div> -->
-           
-        
+            <!-- Write your code here -->        
             <div class="container">
-                
+                <div>
+
+                    <button disabled id="prev-btn" class="btn btn-light next-btn" onclick="prev()">Previous</button>
+                    <button id="counter" disabled class="btn btn-light">0 / 16</button>
+                    <button id="next-btn" class="btn btn-light next-btn" onclick="next()">Next</button>
+                </div>
+
                 <div class="row">
-                    <div class="philosophers" id="philosophers">
-                        <!-- <div class="philosopher" id="p0">
-                            A
+                    
+                    <div class="philosophers" >
+                        <div class="title-philosopher">
+                            Philosophers
                         </div>
-                        <div class="philosopher" id="p1">
-                            B
+                        <div id="philosophers">
+
                         </div>
-                        <div class="philosopher" id="p2">
-                            C
-                        </div>
-                        <div class="philosopher" id="p3">
-                            D
-                        </div>
-                        <div class="philosopher" id="p4">
-                            E
-                        </div> -->
                     </div>
                     <div class="locks">
+                        <div class="title-philosopher">
+                            Chopsticks
+                        </div>
                         <div class="lock unlocked" id="l0">
                             Chopstick 1
                         </div>
@@ -356,21 +345,23 @@
                         </div>
                     </div>
             
-                    <div class="status" id="message">
-                        
+                    <div class="status" id="">
+                        <div class="title-philosopher">
+                            Status
+                        </div>
+                        <div class="message" id="message">
+
+                            Click on Next to see the sequence of steps leading to a deadlock
+                        </div>
                     </div>
     
                 </div>
-                
                 <div class="row">
                     <div class="codes" id="codes">
 
                     </div>
-                </div>
-        
-            </div>
-            
-                
+                </div>        
+            </div>                
       </div>
 
     </main>

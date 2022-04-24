@@ -25,14 +25,15 @@
 .philosophers{
     display: flex;
     flex-direction: column;
+    margin: 0rem 1rem;   
 }
 
 .philosopher{
-    padding: 5px 50px;
-    background-color: #EEEEEE;
+    padding: 10px 50px;
+    background-color: #FAFAFA;
     border-radius: 3px;
     text-align: center;
-    margin: 2px;    
+    border-bottom: 0.01rem solid grey; 
 }
 .locks{
     display: flex;
@@ -63,10 +64,15 @@
 }
 
 .status{
-    background-color: rgb(241, 229, 229);
-    padding: 1rem;
+    background-color: #FAFAFA;
     margin: 1rem;
-    width: 200px;
+    width: 250px;
+}
+
+.message{
+    background-color: #FAFAFA;
+    text-align: center;
+    padding: 1.5rem;
     /* width: 10%; */
 }
 
@@ -88,10 +94,12 @@
     background-color: #0097A7;
 }
 
-.row{
+.code-layout{
     display: flex;
     flex-direction: row;
+    width: 50%;
 }
+
 
 .row{
     display: flex;
