@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <title>Operating Systems Project</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+
+
+    <link href="../../template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="header bg-dark">
+        <div class="home">
+            <a href="../../index.html" class="home-link">Home</a>            
+        </div>
+        <div class="heading">
+            File Allocation
+        </div>        
+    </div>
+
+    <main role="main" class="container">
+
+      <div class="starter-template">
+            <h3>Theory</h3><br>
+            <p style="font-size: 18px!important;">
+                The allocation methods define how the files are stored in the disk blocks. There are three main disk space or file allocation methods.<br>
+
+<br><b>. Contiguous Allocation<br>
+    . Linked Allocation<br>
+    . Indexed Allocation</b><br><br>
+The main idea behind these methods is to provide:<br><br>
+
+. Efficient disk space utilization.<br>
+    . Fast access to the file blocks.<br><br>
+<b>1- Contiguous Allocation</b><br><br>
+
+In this scheme, each file occupies a contiguous set of blocks on the disk. For example, if a file requires n blocks and is given a block b as the starting location, then the blocks assigned to the file will be: b, b+1, b+2,……b+n-1. This means that given the starting block address and the length of the file (in terms of blocks required), we can determine the blocks occupied by the file.<br>
+The directory entry for a file with contiguous<br> allocation contains<br>
+
+. Address of starting block<br>
+. Length of the allocated portion.<br> <br> 
+<a href='fileallocation_simulator_conti.html'><button style="background-color: black;color:#00ff00;border-radius: 5px;">Simulator-1</button></a><br><br> 
+<b>2- Linked List Allocation</b><br><br>
+
+
+
+In this scheme, each file is a linked list of disk blocks which need not be contiguous. The disk blocks can be scattered anywhere on the disk.
+The directory entry contains a pointer to the starting and the ending file block. Each block contains a pointer to the next block occupied by the file.<br><br><a href='fileallocation_simulator_link.html'><button style="background-color: black;color:#00ff00;border-radius: 5px;">Simulator-2</button></a>
+            </p>
+                <!-- Write your code here -->
+      </div>
+
+    </main>
+  </body>
+</html>
