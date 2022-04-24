@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Scheduling</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="templetes.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+    <div class="header bg-dark">
+        <div class="heading">
+          Process Scheduling
+        </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link " href="../../index.html">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link current" href="theory.html">Theory</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="simulator.html">Simulator</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      </div>
+    <div class="starter-template">
+        <h2>Theory</h2>
+        <p>The process scheduling is the activity of the process manager that handles the removal of the running process
+            from the CPU and the selection of another process on the basis of a particular strategy.
+            <br>
+            Process scheduling is an essential part of a Multiprogramming operating systems. Such operating systems
+            allow
+            more than one process to be loaded into the executable memory at a time and the loaded process shares the
+            CPU
+            using time multiplexing.
+        </p>
+        <br>
+        <p>The Operating System maintains the following important process scheduling queues − </p>
+        
+        <li style="display:flex;"><b>Job Queue - </b>
+            <p>This queue keeps all the processes in the system.</p>
+        </li>
+        <li style="display:flex;"><b>Ready Queue - </b>
+            <p>This queue keeps a set of all processes residing in main memory, ready and waiting to execute. A new
+                process
+                is always put in this queue.</p>
+        </li>
+        <br>
+        <p>The OS can use different policies to manage each queue (FIFO, Round Robin, Priority, etc.). The OS scheduler
+            determines how to move processes between the ready and run queues which can only have one entry per
+            processor
+            core on the system.</p>
+        <br>
+        <h2>First Come First Serve (FCFS)</h2>
+        <p><strong>First Come First Serve (FCFS)</strong> is an operating system scheduling algorithm that automatically
+            executes queued requests and processes in order of their arrival. It is the easiest and simplest CPU
+            scheduling
+            algorithm. In this type of algorithm, processes which requests the CPU first get the CPU allocation first.
+            This
+            is managed with a FIFO queue. The full form of FCFS is First Come First Serve.</p>
+
+        <h2>Shortest Job First (SJF) Scheduling</h2>
+        <p><strong>SJF scheduling algorithm</strong> schedules the processes according to their burst time.
+            <br>
+            In SJF scheduling, the process with the lowest burst time, among the list of available processes in the
+            ready
+            queue, is going to be scheduled next.
+            <br>
+            However, it is very difficult to predict the burst time needed for a process hence this algorithm is very
+            difficult to implement in the system.
+        </p>
+        <h2>Round Robin (RR)</h2>
+        <p><strong>Round Robin</strong> is the preemptive process scheduling algorithm.
+
+            Each process is provided a fix time to execute, it is called a quantum.
+
+            Once a process is executed for a given time period, it is preempted and other process executes for a given
+            time period.
+
+            Context switching is used to save states of preempted processes.</p>
+
+
+        <h2>Priority Based Scheduling</h2>
+        <p>
+            <strong>Priority scheduling</strong> is a non-preemptive algorithm and one of the most common scheduling
+            algorithms in batch
+            systems.
+
+            Each process is assigned a priority. Process with highest priority is to be executed first and so on.
+
+            Processes with same priority are executed on first come first served basis.
+
+            Priority can be decided based on memory requirements, time requirements or any other resource requirement.
+        </p>
+
+
+
+        <h2>Shortest Remaining Time</h2>
+        <p><strong>Shortest remaining time (SRT)</strong> is the preemptive version of the SJN algorithm.
+
+            The processor is allocated to the job closest to completion but it can be preempted by a newer ready job
+            with shorter time to completion.
+
+            Impossible to implement in interactive systems where required CPU time is not known.
+
+            It is often used in batch environments where short jobs need to give preference.
+        </p>
+
+        <h2>Muliple-Level Queues Scheduling</h2>
+        <p>
+            <strong>Multiple-level queues</strong> are not an independent scheduling algorithm. They make use of other
+            existing
+            algorithms to group and schedule jobs with common characteristics.
+
+            Multiple queues are maintained for processes with common characteristics.
+            Each queue can have its own scheduling algorithms.
+            Priorities are assigned to each queue.
+            For example, CPU-bound jobs can be scheduled in one queue and all I/O-bound jobs in another queue. The
+            Process Scheduler then alternately selects jobs from each queue and assigns them to the CPU based on the
+            algorithm assigned to the queue.
+        </p>
+    </div>
+
+</body>
+
+</html>
