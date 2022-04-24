@@ -85,13 +85,13 @@
             'void *thinkEatRepeat() {',
             'Hungry...',
 
-            'pthread_mutex_lock(&chopsticks[i]);',
-            'pthread_mutex_lock(&chopsticks[(i+1)%n]);',
+            'wait(&chopsticks[i]);',
+            'wait(&chopsticks[(i+1)%n]);',
 
             'Eating...',
 
-            'pthread_mutex_unlock(&chopsticks[i]);',
-            'pthread_mutex_unlock(&chopsticks[(i+1)%n]);',   
+            'signal(&chopsticks[i]);',
+            'signal(&chopsticks[(i+1)%n]);',   
 
             '}'
         ]
@@ -263,6 +263,9 @@
                     divLine.classList.add('code-line');
                     if(line_no == 0 ){
                         divLine.classList.add('current-line');
+                    }
+                    if(line_no != 0 && line_no != code.length - 1){
+                        divLine.classList.add('indent');
                     }
                     line_no++;
                     div.appendChild(divLine);

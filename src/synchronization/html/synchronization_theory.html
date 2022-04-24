@@ -19,6 +19,13 @@
 
 
     <link href="/template.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/theory.css">
+
+    <style>
+      h3{
+        margin: 2rem 0;
+      }
+    </style>
   </head>
 
   <body>
@@ -50,15 +57,128 @@
     <main role="main" class="container">
 
       <div class="starter-template">
-            <h3>Theory</h3>
-            <p>
-                On the basis of synchronization, processes are categorized as one of the following two types:
+            <h3>Synchronization</h3>
 
-Independent Process : Execution of one process does not affects the execution of other processes.
-Cooperative Process : Execution of one process affects the execution of other processes.
-Process synchronization problem arises in the case of Cooperative process also because resources are shared in Cooperative processes.    
+            <p>
+              On the basis of synchronization, processes are categorized as one of the following two types:
+
+              <ol>
+                <li>                Independent Process : Execution of one process does not affects the execution of other processes.
+                </li>
+                <li>
+                  Cooperative Process : Execution of one process affects the execution of other processes.
+
+                </li>
+              </ol>
+                Process synchronization problem arises in the case of Cooperative process also because resources are shared in Cooperative processes.
             </p>
-                <!-- Write your code here -->
+            <hr>
+
+            <h3>Critical Section Problem</h3>
+            <p>
+              Critical section is a code segment that can be accessed by only one process at a time. Critical section contains shared variables which need to be synchronized to maintain consistency of data variables.
+              Any solution to the critical section problem must satisfy three requirements:
+              <ul>
+                <li>            Mutual Exclusion : If a process is executing in its critical section, then no other process is allowed to execute in the critical section.
+                </li>
+                <li>
+                  Progress : If no process is executing in the critical section and other processes are waiting outside the critical section, then only those processes that are not executing in their remainder section can participate in deciding which will enter in the critical section next, and the selection can not be postponed indefinitely.
+
+                </li>
+                <li>
+                  Bounded Waiting : A bound must exist on the number of times that other processes are allowed to enter their critical sections after a process has made a request to enter its critical section and before that request is granted.
+
+                </li>
+              </ul>
+            </p>
+
+            <hr>
+
+            <h3>
+              Classic Synchronization Problems
+            </h3>
+            <div class="topic">
+              <h4>
+                1. Dining Philosophers
+              </h4>
+
+              <div class="picture">
+                <img src="../images/Dining Philosophers.jpg" alt="">
+              </div>
+              <div class="theory">
+                <p>
+                  The dining philosophers problem is a classic synchronization problem involving the allocation of limited resources amongst a group of processes in a deadlock-free and starvation-free manner:
+                  <ul>
+                    <li>
+                      Consider five philosophers sitting around a table, in which there are five chopsticks evenly distributed and an endless bowl of rice in the center, as shown in the diagram below. ( There is exactly one chopstick between each pair of dining philosophers. )
+    These philosophers spend their lives alternating between two activities: eating and thinking.
+                    </li>
+                    <li>
+                      When it is time for a philosopher to eat, it must first acquire two chopsticks - one from their left and one from their right.
+    
+                    </li>
+                    <li>
+                      When a philosopher thinks, it puts down both chopsticks in their original locations.
+    
+                    </li>
+                  </ul>
+                  
+                </p>
+              </div>
+
+              
+            </div>
+
+            <hr>
+            <div class="topic">
+              <h4>2. Readers Writers Problem</h4>
+
+              <div class="picture">
+
+              </div>
+              <div class="theory">
+                <p>
+                  In the readers-writers problem there are some processes ( termed readers ) who only read the shared data, and never change it, and there are other processes ( termed writers ) who may change the data in addition to or instead of reading it. There is no limit to how many readers can access the data simultaneously, but when a writer accesses the data, it needs exclusive access.
+                  There are several variations to the readers-writers problem, most centered around relative priorities of readers versus writers.
+                  <ul>
+                    <li>The first readers-writers problem gives priority to readers. In this problem, if a reader wants access to the data, and there is not already a writer accessing it, then access is granted to the reader. A solution to this problem can lead to starvation of the writers, as there could always be more readers coming along to access the data. ( A steady stream of readers will jump ahead of waiting writers as long as there is currently already another reader accessing the data, because the writer is forced to wait until the data is idle, which may never happen if there are enough readers. )</li>
+                    <li>The second readers-writers problem gives priority to the writers. In this problem, when a writer wants access to the data it jumps to the head of the queue - All waiting readers are blocked, and the writer gets access to the data as soon as it becomes available. In this solution the readers may be starved by a steady stream of writers.</li>
+                  </ul>
+                </p>
+              </div>
+            </div>
+            
+            <hr>
+
+            <div class="topic">
+              <h4>3. Producer Consumer</h4>
+              <div class="picture">
+                <img src="../images/Producer Consumer.jpeg" alt="">
+              </div>
+              <div class="theory">
+                <p>
+                  We consider two processes, which are called the 'producer' and the 'consumer' respectively. The producer is a cyclic process and each time it goes through its cycle it produces a certain portion of information, that has to be processed by the consumer. The consumer is also a cyclic process and each time it goes through its cycle, it can process the next portion of information, as has been produced by the producer ... We assume the two processes to be connected for this purpose via a buffer with some capacity.
+                </p>
+                <p>
+                  <ul>
+                    <li>
+                      Both the producer and the consumer are adjusting the value of the variable counter, which can lead to a condition known as a race condition. In this condition a piece of code may or may not work correctly, depending on which of two simultaneous processes executes first, and more importantly if one of the processes gets interrupted such that the other process runs between important steps of the first process
+                   </li>
+                    <li>
+                      The particular problem above comes from the producer executing "counter++" at the same time the consumer is executing "counter--". If one process gets part way through making the update and then the other process butts in, the value of counter can get left in an incorrect state.
+                    </li>
+                    <li>
+                      But, you might say, "Each of those are single instructions - How can they get interrupted halfway through?" The answer is that although they are single instructions in C++, they are actually three steps each at the hardware level: (1) Fetch counter from memory into a register, (2) increment or decrement the register, and (3) Store the new value of counter back to memory. If the instructions from the two processes get interleaved, there could be serious problems, such as illustrated by the following:
+                    </li>
+                    <li>
+                      Obviously the solution is to only allow one process at a time to manipulate the value "counter". This is a very common occurrence among cooperating processes, so lets look at some ways in which this is done, as well as some classic problems in this area.
+                    </li>
+                  </ul>
+                </p>
+              </div>
+            </div>
+            
+            
       </div>
 
     </main>

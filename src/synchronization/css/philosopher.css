@@ -114,8 +114,8 @@
 }
 
 .outer{
-    margin: 0.5rem;
-    padding: 1rem;
+    margin: 0rem;
+    padding: 0.5rem;
 }
 
 .code{
@@ -124,6 +124,8 @@
     padding: 1rem 0;
     font-size: small;
     border-radius: 3px;
+    border: 1px solid #BDBDBD;
+    border-top: none;
 }
 
 .code-line{
@@ -134,4 +136,8 @@
 .current-line{
     background-color: black;
     color: white;
+}
+
+.indent{
+    margin-left: 1rem;
 }
