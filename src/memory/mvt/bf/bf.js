@@ -70,7 +70,11 @@ function addProcessSize() {
 function addProcess(pro_size, pro_id, fromQ) {
     var i;
     var found = 0;
+    var best_ind = -1;
+    var best_size = total_mem_size;
     if(num_parts == 0) {
+        best_ind = 0;
+        best_size = total_mem_size;
         addPart(0, pro_size, pro_id);
         found = 1;
     }
@@ -79,24 +83,31 @@ function addProcess(pro_size, pro_id, fromQ) {
 
             if(i == 0) {
                 if(part_start[0] >= pro_size) {
-                    addPart(0, pro_size, pro_id);
+                    best_ind = 0;
+                    best_size = part_start[0];
                     found = 1;
-                    break;
                 }
             }
-            else if(found == 0) {
+            else {
                 if((part_start[i] - part_end[i-1]) >= pro_size) {
-                    addPart(i, pro_size, pro_id);
-                    found = 1;
-                    break;
+                    if((part_start[i] - part_end[i-1]) < best_size) {
+                        best_ind = i;
+                        best_size = part_start[i] - part_end[i-1];  
+                        found = 1;
+                    }
                 }
             }
         }
-        if(found == 0) {
-            if((total_mem_size - part_end[num_parts-1]) >= pro_size) {
-                addPart(num_parts, pro_size, pro_id);
+        if((total_mem_size - part_end[num_parts-1]) >= pro_size) {
+            console.log(best_size);
+            if((total_mem_size - part_end[num_parts-1]) < best_size) {
+                best_ind = num_parts;
+                best_size = total_mem_size - part_end[num_parts-1];  
                 found = 1;
             }
+        }
+        if(found == 1) {
+            addPart(best_ind, pro_size, pro_id);
         }
     }
 
@@ -250,6 +261,69 @@ function removeFromQ(pro_id) {
         }
     }
     input_q_size -= 1;
+}
+
+function drawInputQTable() {
+    var htmlText = 
+    `
+    <button type="submit" class="btn btn-primary md-3" id="compact-btn">Compact</button> 
+    <table>
+    <tr>
+        <th colspan="0">Input Queue</th>
+    </tr>
+    <tr>
+        <th>Process Id</th>
+    `;
+    for(var i = 0; i < input_q_size; i++)
+    {
+        htmlText += 
+        `
+        <td>` + input_q_pro_id[i] + `</td>
+        `;
+    }
+
+    htmlText += 
+    `
+    <tr>
+        <th>Process Size</th>
+    `;
+    for(var i = 0; i < input_q_size; i++)
+    {
+        htmlText += 
+        `
+        <td>` + input_q_pro_size[i] + `</td>
+        `;
+    }
+
+    htmlText += 
+    `
+    </tr>
+    </table>
+    `;
+    $("#input-q-table").html(htmlText);
+    $(document).ready(function() {
+        $("#compact-btn").click(function(){
+            Compact();
+        }); 
+    }); 
+}
+
+function Compact() {
+    var i;
+    for(i = 0; i < num_parts; i++) {
+        if(i == 0) {
+            part_start[i] = 0;
+            part_end[i] = part_start[i] + part_size[i];
+        }
+        else {
+            part_start[i] = part_end[i-1];
+            part_end[i] = part_start[i] + part_size[i];
+        }
+    }
+    drawPart();
+    for(i = 0; i < input_q_size; i++) {
+        addProcess(input_q_pro_size[i], input_q_pro_id[i], 1);
+    }
 }
 
 function calcExtFrag(pro_size) {

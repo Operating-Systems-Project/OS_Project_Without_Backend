@@ -20,51 +20,19 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    <title>Simulator</title>
+    <title>MFT</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
-
-
-    <link href="../../template.css" rel="stylesheet">
-
-    <style>
-        .button {
-            border-radius: 8px;
-            background-color: #258522;
-            border: none;
-            color: #FFFFFF;
-            text-align: center;
-            font-size: 28px;
-            padding: 20px;
-            width: 200px;
-            transition: all 0.5s;
-            cursor: pointer;
-        }
-
-        .button span {
-            cursor: pointer;
-            display: inline-block;
-            position: relative;
-            transition: 0.5s;
-        }
-
-        .button span:after {
-            content: '\00bb';
-            position: absolute;
-            opacity: 0;
-            top: 0;
-            right: -20px;
-            transition: 0.5s;
-        }
-    </style>
-
+    <title>MVT-First Fit</title>
+    <link rel="stylesheet" href="../../../../template.css">
 </head>
 
 <body>
 
+
     <div class="header bg-dark">
         <div class="heading">
-            Simulator
+            MVT-First Fit
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -74,26 +42,46 @@
             <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link " href="/index.html">Home<span class="sr-only"></span></a>
+                        <a class="nav-link " href="../../index.html">Home <span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="memoryPartitioningTheory.html">Theory</a>
+                        <a class="nav-link" href="./../../theory.html">Theory</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link current" href="memoryPartitioningSimulator.html">Simulator</a>
+                        <a class="nav-link current" href="./../../simulator.html">Simulator</a>
+
                     </li>
                 </ul>
             </div>
         </nav>
     </div>
-    <div class="row" style="margin-top: 50px; margin-left: 32em; margin-right: 0;">
-        <div class="col-md-3">
-            <button class="button" onclick="window.location.href='mftSimulator.html'"><span>MFT</span></button>
+
+    <div class="row">
+        <div class="col-md-3  m-5">
+            <div class="m-2">
+                <div class="form-group">
+                    <label>Size of memory: </label>
+                    <input type="text" class="form-control" id="mem-size" placeholder="Enter size of memory: ">
+                </div>
+                <button type="submit" class="btn btn-primary" id="mem-size-btn">Go</button>
+            </div>
         </div>
-        <div class="col-md-3">
-            <button class="button" onclick="window.location.href='mvtSimulator.html'"><span>MVT</span></button>
+        <div class="col-md-3 m-5">
+            <div id="add-rem-pro-btns">
+            </div>
+            <div class="m-2" id="add-rem-pro">
+            </div>
+            <div id="canvas" class="ml-5 mt-5">
+            </div>
         </div>
-    </div>
+        <div class="col-md-3 m-5">
+            <div id="compaction">
+            </div>
+            <div id="input-q-table">
+            </div>
+        </div>
+
+        <script src="ff.js"></script>
 
 </body>
 
