@@ -1,0 +1,63 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.buffer{
+    margin: auto;
+    width: 600px;
+    height: 100px;
+    border: 2px solid black;
+}
+
+.producer{
+    float: left;
+}
+
+.consumer{
+    float: right;
+}
+
+td{
+    width: 11%;
+    padding: 40px !important;
+    height: 40px !important;
+}
+
+.title{
+    background-color: #E0E0E0;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.codes{
+    display: flex;
+    flex-direction: row;   
+    margin: 2rem; 
+    justify-content: center;
+}
+
+.code{
+    text-align: left;
+    background-color: #FAFAFA;
+    border-radius: 3px;
+    border-top: none;
+    margin: 1rem;
+}
+
+.code-line{
+    padding: 0.2rem 1rem;
+    font-family: monospace;
+}
+
+.status{
+    margin: 6rem;
+    /* background-color: #FAFAFA; */
+    flex-grow: 1;
+}
+
+.indent{
+    padding-left: 2rem;
+}
