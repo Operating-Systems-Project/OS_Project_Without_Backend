@@ -2,33 +2,43 @@ body {
     padding-top: 5rem;
   }
   .starter-template {
-    padding: 3rem 1.5rem;
+    padding: 5rem 1.5rem;
   }
   
 .heading{
     color: white;
-    font-size: 25px;
+    padding: 0rem;
+    font-size: 2rem;
     text-align: center !important;
 }
 
+.navbar{
+    float: left;
+    padding:0;
+}
+
+.nav-link{
+    color: white !important;
+    margin: 0px 0.5rem;
+    transition: all 0.5s;
+}
+
+.nav-link:hover{
+    background-color: #263238;
+    border-radius: 2px;
+}
+
+.current{
+    border-bottom: 2px solid white;
+    font-weight: 500;
+}
+
 .header{
-    padding: 1rem;
+    padding: 0.2rem ;
+    padding-top: 1rem;
     position: absolute;
     width: 100%;
     top: 0;
     left: 0;
 }
 
-.home{
-    float: left;
-    font-size: large;
-}
-
-
-.home-link{
-    color: white !important;
-}
-
-.home-link:hover, .home-link:focus{
-    text-decoration: none;
-}
