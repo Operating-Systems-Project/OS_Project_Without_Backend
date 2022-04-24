@@ -1,5 +1,4 @@
-<!doctype html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -21,10 +20,63 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    <title>Operating Systems Project</title>
+    <title>Theory</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+    <style>
+        .button {
+            border-radius: 8px;
+            background-color: #258ff1;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            width: 200px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
 
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .button:hover span {
+            padding-right: 25px;
+        }
+
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        .btn-row {
+            margin-top: 50px;
+        }
+
+        .choose {
+            font-size: 30px;
+            text-align: center;
+            margin-top: 90px;
+            opacity: 1;
+            animation-name: FadeOut;
+            animation-duration: 5s;
+            color: rgb(133, 133, 133);
+        }
+    </style>
 
     <link href="../../template.css" rel="stylesheet">
 </head>
@@ -32,30 +84,147 @@
 <body>
 
     <div class="header bg-dark">
-        <div class="home">
-            <a href="../../index.html" class="home-link">Home</a>
-        </div>
         <div class="heading">
-            Process Syncronization
+            Memory Management
         </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link " href="../../index.html">Home <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link current" href="theory.html">Theory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="simulator.html">Simulator</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </div>
 
     <main role="main" class="container">
 
         <div class="starter-template">
-            <h3>Theory</h3>
+            <h3> Introduction</h3>
             <p>
-                On the basis of synchronization, processes are categorized as one of the following two types:
-
-                Independent Process : Execution of one process does not affects the execution of other processes.
-                Cooperative Process : Execution of one process affects the execution of other processes.
-                Process synchronization problem arises in the case of Cooperative process also because resources are
-                shared in Cooperative processes.
+                Any process must be loaded onto the main memory before it can be executed by the CPU. The operating
+                system is
+                responsible for allocation of all the necessary resources.
             </p>
-            <!-- Write your code here -->
-        </div>
+            <p>
+                In operating systems, memory management is the function responsible for allocating and managing a
+                computer’s
+                main memory. It keeps track of the status of each memory location, whether they are allocated or free,
+                no
+                illegal references are being made etc to ensure efficient use of main memory.
+            </p>
+            <p> Main Memory refers to a physical memory that is the internal memory to the computer. The word
+                main is used to distinguish it from external mass storage devices such as disk drives. Main
+                memory is also known as RAM. The computer is able to change only data that is in main memory.
+                Therefore, every program we execute and every file we access must be copied from a storage
+                device into main memory.</p>
 
+            <div>
+                <h3>Contiguous Memory Allocation</h3>
+                <p>In contiguous memory allocation each process is contained in a single contiguous block of memory.
+                    Memory is divided into several fixed size partitions. Each partition contains exactly one
+                    process. When a partition is free, a process is selected from the input queue and loaded into
+                    it. The free blocks of memory are known as holes. The set of holes is searched to determine
+                    which hole is best to allocate.</p>
+            </div>
+
+            <div>
+                <h3>Swapping</h3>
+                <p>A process needs to be in memory for execution. But sometimes there is not enough main memory to
+                    hold all the currently active processes in a timesharing system. So, excess process are kept on
+                    disk and brought in to run dynamically. Swapping is the process of bringing in each process in
+                    main memory, running it for a while and then putting it back to the disk.</p>
+            </div>
+
+            <div>
+                <h3>Fragmentation</h3>
+                <p>As processes are loaded and removed from memory, the free memory space is broken into little
+                    pieces. It happens after sometimes that processes cannot be allocated to memory blocks
+                    considering their small size and memory blocks remains unused. This problem is known as
+                    Fragmentation.</p>
+                <p>Fragmentation is of two types: </p>
+                <ul>
+                    <li>
+                        <h3>External fragmentation</h3>
+                        <p>Total memory space is enough to satisfy a request or to reside a process in it, but it is
+                            not contiguous, so it cannot be used.</p>
+                    </li>
+                    <li>
+                        <h3>Internal fragmentation</h3>
+                        <p>Memory block assigned to process is bigger. Some portion of memory is left unused, as it
+                            cannot be used by another process.</p>
+                    </li>
+                </ul>
+            </div>
+            <hr />
+            <div>
+                <p>
+                    There are two techniques of memory management, contiguous and non-contiguous. We will be discussing
+                    the
+                    concepts
+                    of contiguous memory allocation in this section, while the algorithms used and non-contiguous memory
+                    allocation
+                    in further sections. They are as follows:
+                </p>
+            </div>
+            <div>
+                <h3>Multiprogramming with Fixed Tasks (MFT)</h3>
+                <img src="./pics/mft.png" alt="MFT">
+                <p>This is the oldest and simplest technique designed to load multiple processes into
+                    the main memory at once. The number of partitions in this technique is fixed, but the size of
+                    individual
+                    partitions may vary. Each process is loaded into one of the partitions.</p>
+
+            </div>
+
+            <div>
+                <h3>Multiprogramming with Variable Tasks (MVT)</h3>
+                <img src="./pics/mvt.png" alt="MVT">
+                <p>Variable partitioning (MVT): In contrast to fixed partitioning, it aims at a more dynamic approach.
+                    The
+                    partitions in the main memory are not made before loading the process but are created during run
+                    time. The
+                    partition created is equal to the process loaded, so internal fragmentation is avoided.</p>
+            </div>
+
+            <div>
+                <h3>Memory Allocation</h3>
+                <p>Memory allocation is a process by which computer programs are assigned memory or space</p>
+                <ul>
+                    <li>
+                        <h5>First Fit</h5>
+                        <p>The first hole that is big enough is allocated to program</p>
+                    </li>
+                    <li>
+                        <h5>Best Fit</h5>
+                        <p>The smallest hole that is big enough is allocated to program</p>
+                    </li>
+                    <li>
+                        <h5>Worst Fit</h5>
+                        <p>The largest hole that is big enough is allocated to program</p>
+                    </li>
+                    <li>
+                        <h5>Next Fit</h5>
+                        <p>Scans the memory from the location of last placement and chooses next available block
+                            that is large enough</p>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
     </main>
+
 </body>
 
 </html>
