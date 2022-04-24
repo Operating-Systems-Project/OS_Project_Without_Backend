@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <title>Operating Systems Project</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+
+
+    <link href="../../../template.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/readers_writers.css">
+
+
+    <style>
+        .starter-template{
+            text-align: center;
+        }
+
+    </style>
+    <script>
+
+        let counter = 0;
+
+        const processesStates = [
+            [1,  2, 3, 4, 5, 'W'],
+            [1,  2, 3, 4, 5],
+            [1,  2, 3, 4, 5],
+            [1,  2, 3, 4, 5, 'W'],
+            [1,  2, 4, 5, 'W'],
+            [1,  2, 4, 5, 'W'],
+            [1,  2, 4, 5, 'W'],
+            [1,  2, 4, 5, 'W'],
+            [2, 4, 5, 'W'],
+            [2, 4, 5, 'W'],
+            [2, 4, 5, 'W'],
+            [2, 4, 5, 'W'],
+            [2, 3, 4, 5, 'W'],
+            [2, 3, 4, 5],
+            [2, 3, 4, 5, 'W'],
+            [2, 3, 4, 5, 'W'],
+            [1, 2, 3, 4, 5, 'W'],
+        ]
+        
+        const messages = [
+            'Processes are ready',
+            'Writer arrives and locks the database.',
+            'Writer writes the data',
+            'Writer releases the database lock and leaves the database',
+            'Reader #3 arrives, locks the mutex and increments readerCount',
+            'Reader #3 locks the database',
+            'Reader #3 releases the mutex',
+            'Reader 3 reads the data',
+            'Reader 1 arrives',
+            'Reader 1 locks the mutex and increments the readerCount',
+            'Reader 1 unlocks the mutex and reads the data',
+            'Reader 3 locks the mutex and decrements the readerCount',
+            'Reader 3 unlocks the mutex and leaves the database',
+            'Writer tries to enter the database',
+            'Writer sees the database locked and leaves the database',
+            'Reader 1 locks the mutex and decrements the readerCount',
+            'Reader 1 unlocks the mutex and leaves the database'
+        ]
+
+
+        function loadProcesses(){
+            let processes  = document.getElementById('processes');
+            processes.innerHTML = '';
+            processesStates[counter].map(process => {
+                let div = document.createElement('div');
+                div.classList.add('process');
+                console.log(typeof(process))
+                if(Number.isFinite(process)){
+                    div.innerHTML = 'Reader ' + process;
+                }
+                else{
+                    div.innerHTML = 'Writer';
+                }
+                processes.append(div);
+            });
+            document.getElementById('message').innerHTML = messages[counter];
+            document.getElementById('counter').innerHTML = (counter + 1) + '/ ' + messages.length;
+            counter++;
+            if(counter == messages.length){
+                document.getElementById('next-btn').disabled = true;
+            }
+        }
+
+        function restart(){
+            counter = 0;
+            document.getElementById('next-btn').disabled = false;
+
+            loadProcesses();
+        }
+    </script>
+  </head>
+
+  <body onload="loadProcesses()">
+
+    <div class="header bg-dark">
+      <div class="heading">
+         Process Synchronization
+      </div> 
+      <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">         
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link " href="/index.html">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="synchronization_theory.html">Theory</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link current" href="synchronization_simultor.html">Simulator</a>
+            </li>              
+          </ul>            
+        </div>
+      </nav>                 
+    </div>
+
+    <main role="main" class="container">
+
+      <div class="starter-template">
+            <!-- Write your code here -->        
+            <div class="container">
+                <div>
+                    <button id="restart" class="btn btn-light next-btn" onclick="restart()">Restart</button>
+
+                    <button id="counter" disabled class="btn btn-light">1 / 17</button>
+                    <button id="next-btn" class="btn btn-light next-btn" onclick="loadProcesses()">Next</button>
+                </div>
+
+                <div class="row">
+                    
+                    <div class="philosophers" >
+                        <div class="title">
+                            Processes
+                        </div>
+                        <div id="processes">
+
+                        </div>
+                    </div>
+                    <!-- <div class="states">
+                        <div class="state">
+                            Writer
+                        </div>
+                    </div> -->
+            
+                    <div class="status" id="">
+                        <div class="title">
+                            Status
+                        </div>
+                        <div class="message" id="message">
+
+                            Click on Next to see the readers and writers in action
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="row">
+                    <div class="codes" id="codes">
+                        <div class="code">
+                            <div class="title">Consumer</div>
+                            <div class="code-line"> void *producer() {</div>
+                            <div class="code-line"> sem_wait(&full);</div>
+                            <div class="code-line"> sem_wait(&mutex);</div>
+                            <div class="code-line"> consume();</div>
+                            <div class="code-line"> sem_post(&mutex);</div>
+                            <div class="code-line"> sem_post(&empty);</div>
+                            <div class="code-line"> }</div>
+                        </div>
+                        <div class="code">
+                            <div class="title">Consumer</div>
+                            <div class="code-line"> void *producer() {</div>
+                            <div class="code-line"> sem_wait(&full);</div>
+                            <div class="code-line"> sem_wait(&mutex);</div>
+                            <div class="code-line"> consume();</div>
+                            <div class="code-line"> sem_post(&mutex);</div>
+                            <div class="code-line"> sem_post(&empty);</div>
+                            <div class="code-line"> }</div>
+                        </div>
+                    </div>
+                </div>        
+            </div>                
+      </div>
+
+    </main>
+  </body>
+</html>
