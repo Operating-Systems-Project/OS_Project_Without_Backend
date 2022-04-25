@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <title>Theory</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+
+
+  <link href="../../template.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="header bg-dark">
+    <div class="heading">
+      Page Replacement
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link " href="../../index.html">Home <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link current" href="theory.html">Theory</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="lruindex.html">Simulator</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <br>
+  <br>
+  <br>
+
+  <div class="container">
+
+    <p>The page replacement algorithm decides which memory page is to be replaced. The process of replacement is sometimes called swap out or write to disk. Page replacement is done when the requested page is not found in the main memory (page fault).</p>
+
+    <p>When a page fault occurs, the operating system has to choose a page to remove from memory to make room for the page that
+          has to be brought in. The page replacement is done by swapping the required pages from backup storage to main memory
+           and vice-versa. If the page to be removed has been modified while in memory, it must be rewritten to the disk to
+            bring the disk copy up to date.<br><br> If, however, the page has not been changed (e.g., it contains program text),
+            the disk copy is already up to date, so no rewrite is needed. The page to be read in just overwrites the page
+             being evicted. A page replacement algorithm is evaluated by running the particular algorithm on a string of
+             memory references and compute the page faults.Referenced string is a sequence of pages being referenced.
+              Page fault is not an error. Contrary to what their name might suggest, page faults are not errors and
+              are common and necessary to increase the amount of memory available to programs in any operating
+              system that utilizes virtual memory, including Microsoft Windows, Mac OS X, Linux and Unix.</p>
+
+              <p>Each operating system uses different page replacement algorithms. To select the particular algorithm,
+                    the algorithm with lowest page fault rate is considered. <br>
+                    1.First-In, First-Out page replacement  <br>
+                    2.Least recently used page replacement  <br>
+                    3.Optimal page replacement algorithm   <br>
+                
+
+                 </p>
+
+<hr class="my-4">
+
+
+       <hr class="my-4">
+
+
+
+        <h2 class="dispThelay-3">First come first serve</h2>
+             <hr class="my-4">
+       <p>With the FIFO algorithm, the OS maintains a queue to keep track of all the pages in memory, with the most recent
+            arrival at the back (tail of the queue), and the oldest arrival in front (head of the queue). When the system
+            needs space, a page will be replaced. With FIFO, the page at the front of the queue (the oldest page) is selected
+             for replacement. However, FIFO is know to suffer from a problem known as Belady's anomaly which occurs when
+             increasing the number of page frames results in an increase in the number of page faults for a given memory
+             access pattern.<br> <br>
+             Belady’s anomaly – Belady’s anomaly proves that it is possible to have more page faults when increasing
+                  the number of page frames while using the First in First Out (FIFO) page replacement algorithm. <br>
+                    <br>
+             </p>
+              
+<hr class="my-4">
+
+
+
+<h2 class="dispThelay-3">Least recently used</h2>
+     <hr class="my-4">
+<p>In the Least Recently Used (LRU) page replacement policy, the page that is used least recently will be replaced. </p>
+ 
+
+
+
+
+
+
+
+
+
+<hr class="my-4">
+<h2 class="dispThelay-3">optimal page replacement</h2>
+<br>
+<p> The algorithm has lowest page fault rate of all algorithm.  <br>
+->Often called Balady's Min Basic idea: Replace the page that will not be referenced for the longest time.  <br> <br>
+
+• This algorithm replaces the page that will not be referred by the CPU in future for the longest time.  <br>
+• It is practically impossible to implement this algorithm. <br>
+•This is because the pages that will not be used in future for the longest time can not be predicted. <br>
+•However, it is the best known algorithm and gives the least number of page faults.  <br>
+•Hence, it is used as a performance measure criterion for other algorithms.  <br>
+
+
+</p>
+
+
+<hr class="my-4">
+
+<hr class="my-4">
+
+
+
+
+</body>
+
+</html>
