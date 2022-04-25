@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico"> -->
+    <script src="slp_simulate.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+    <link rel = "stylesheet" href = "../../template.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Single level paging</title>
+</head>
+<body>
+    <div class="header bg-dark">
+        <div class="heading">
+            Single Level Paging
+        </div> 
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">         
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link " href="../../index.html">Home <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="single_level_paging.html">Theory</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link current" href="synchronization_simultor.html">Simulator</a>
+                </li>              
+                </ul>            
+            </div>
+        </nav>
+    </div>
+    <main>
+        <div class="starter-template">
+            <div class="dataform">
+                <form id="paging-data">
+                    <div class="input-container">
+                        <label for="pgsize">Page Size(Frame Size)(Bytes):</label>
+                        <input type="number" name="pgsize" id="pgsize">
+                    </div>
+                    <div class="input-container">
+                        <label for="las">Logical Address space(Bytes):</label>
+                        <input type="number" name="logaddspc" id="las">
+                    </div>
+                    <div class="input-container">
+                        <label for="pas">Physical Address Space(Bytes):</label>
+                        <input type="number" name="phyaddspc" id="pas">
+                    </div>
+                </form>  
+            </div>
+            <div class="input-container">
+                <button type="button" class="btn btn-dark" id="simulate-btn">Simulate</button>
+            </div> 
+            <div class="simulation">
+                <div class="entry-section">
+                    <div>
+                        <button type="button" class="btn btn-primary" id="new-process">New Process</button>
+                    </div>
+                    <div id="process-create">
+                       
+                    </div>
+                </div>
+                <div class="page-table">
+                    <h4>Page Table</h4>
+                    <table class="table" id="pagetable">
+                        <thead>
+                            <tr>
+                                <th>ASID</th>
+                                <th>Page no.</th>
+                                <th>Frame no.</th>
+                            </tr>
+                        </thead>
+                        <tbody id="page-table-body">
+                        </tbody>
+                    </table>
+                    <div>
+                        <button type="button" class="btn btn-dark" id="map">Map</button>
+                    </div>
+                </div>
+                <div class="generate">
+                    <form class = "Pagemap">
+                        <div>
+                            <label for="processno">Process number: </label>
+                            <input type="number" id="processno" name="processno">
+                        </div>
+                        <div>
+                            <label for="pageno">Page number: </label>
+                            <input type="number" id="pageno" name="pageno">
+                        </div>
+                        <div>
+                            <label for="offset">Offset: </label>
+                            <input type="number" id="offset" name="offset">
+                        </div>
+                    </form>
+                    <div class="generate-btn" style="display: flex;justify-content: center;">
+                        <button type="button" class="btn btn-success" id="generatebtn">Generate</button>
+                    </div>
+                    <div class="phadd" id="phadd" style = "margin: 10px;">
+
+                    </div>
+                </div>
+            </div>        
+               
+        </div>   
+    </main>
+    
+    <span>
+        <table>
+            <thead>
+                <tr>
+                    <th> </th>
+                </tr>
+            </thead>
+        </table>
+    </span>
+</body>
+</html>

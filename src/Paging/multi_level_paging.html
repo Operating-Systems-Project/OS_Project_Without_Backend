@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+    <link rel = "stylesheet" href = "../../template.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Multi Level Paging</title>
+</head>
+<body>
+    <div class="header bg-dark">
+        <div class="heading">
+            Multi Level Paging
+        </div> 
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">         
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link " href="../../index.html">Home <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link current" href="#">Theory</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mlp_simulator.html">Simulator</a>
+                </li>              
+                </ul>            
+            </div>
+        </nav>
+    </div>
+    <main>
+        <div class="starter-template">
+            <div class = "types">
+                <span class="paging-types">
+                    <a href = "single_level_paging.html">
+                        <button type = "button" class = "btn btn-dark">SINGLE LEVEL PAGING</button>
+                    </a>
+                </span>
+                <span class = "paging-types">
+                    <a href = "multi_level_paging.html">
+                        <button type = "button" class = "btn btn-dark">MULTI LEVEL PAGING</button>
+                    </a>
+                </span>
+            </div>
+            <div style="margin: 10px;padding: 10px;">
+                <p>
+                    <b>Multi level paging</b> is a paging technique which uses multiple age tables arranged in a 
+                    hierarchical order to map the logical address space to the physical address space. If there 
+                    are <i>n</i> levels in the scheme, then the entries in all the tables except the ones in the 
+                    last level are pointers to page tables of the next level. The last level page tables consist 
+                    of the actual frames in which the data is stored. The logical address generated consists of 
+                    offsets for each level and the result obtained at each level is used to refer to a page table 
+                    in the next level using this offset for that level.
+                </p>
+                <p>
+                    <b>Advantages:</b>
+                    <ul>
+                        <li>Page number lookups are faster.</li>
+                        <li>The page table can consume much less space if there are large regions of unused memory.</li>
+                        <li>Each segment (code, data, stack) can be managed separately.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
