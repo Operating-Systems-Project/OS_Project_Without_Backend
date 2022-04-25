@@ -20,20 +20,19 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    <title>MVT</title>
+    <title>MFT</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
-
-
-    <link href="../../template.css" rel="stylesheet">
-
+    <title>MFT-Worst Fit</title>
+    <link rel="stylesheet" href="../../../../template.css">
 </head>
 
 <body>
 
+
     <div class="header bg-dark">
         <div class="heading">
-            Variable Partitioning
+            MFT-Worst Fit
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -43,31 +42,34 @@
             <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link " href="/index.html">Home<span class="sr-only"></span></a>
+                        <a class="nav-link " href="../../index.html">Home <span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="memoryPartitioningTheory.html">Theory</a>
+                        <a class="nav-link" href="./../../theory.html">Theory</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link current" href="memoryPartitioningSimulator.html">Simulator</a>
+                        <a class="nav-link current" href="./../../simulator.html">Simulator</a>
+
                     </li>
                 </ul>
             </div>
         </nav>
     </div>
 
-    <div class="row" style="margin-right: 0;">
-        <div class="col-md-3 m-5">
+
+    <div class="row" style="margin-right: 0px;">
+        <div class="col-md-3  m-5">
             <div class="m-2">
                 <div class="form-group">
-                    <label>Size of memory: </label>
-                    <input type="text" class="form-control" id="mem-size" placeholder="Enter size of memory: ">
+                    <label>Number of partitions: </label>
+                    <input type="text" class="form-control" id="num-parts" placeholder="Enter number of partitions">
                 </div>
-                <button type="submit" class="btn btn-primary" id="mem-size-btn">Go</button>
-                <div id="parts-size-form" class="m-2">
-
-                </div>
+                <button type="submit" class="btn btn-primary" id="num-parts-btn">Next</button>
             </div>
+            <div id="parts-size-form" class="m-2">
+
+            </div>
+
         </div>
         <div class="col-md-3 m-5">
 
@@ -85,7 +87,8 @@
             </div>
         </div>
 
-        <script src="js/mvt.js"></script>
+        <script src="wf.js"></script>
+
 </body>
 
 </html>
