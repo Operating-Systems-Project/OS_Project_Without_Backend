@@ -185,6 +185,34 @@
                     the main memory at once. The number of partitions in this technique is fixed, but the size of
                     individual
                     partitions may vary. Each process is loaded into one of the partitions.</p>
+                <ul>
+                    <li>
+                        Advantages:
+                        <ul>
+                            <li>Easy-to-implement: Since, the process just involves accommodating the processes into
+                                some partition,
+                                there is little to no concern regarding internal or external fragmentation.</li>
+                            <li>Less-overhead: It is less computationally expensive and does not consume too much
+                                indirect
+                                resources.</li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li>
+                        Disadvantages:
+                        <ul>
+                            <li>Internal-fragmentation: Internal fragmentation is generated as process size may be less
+                                than
+                                partition size.</li>
+                            <li>Limit-on-process-size: Any process larger than the partition itself cannot be loaded
+                                onto the main
+                                memory.</li>
+                            <li>Limit-on-number-of-processes: Maximum number of processes that can be loaded is limited
+                                by the
+                                number of partitions that exist</li>
+                        </ul>
+                    </li>
+                </ul>
 
             </div>
 
@@ -196,6 +224,41 @@
                     partitions in the main memory are not made before loading the process but are created during run
                     time. The
                     partition created is equal to the process loaded, so internal fragmentation is avoided.</p>
+
+                <ul>
+                    <li>
+                        Advantages:
+                        <ul>
+                            <li>EInternal-fragmentation-eliminated: Since, the partition size is equal to the size of
+                                incoming
+                                process size, no space is wasted within the partition.
+                            </li>
+                            <li>No-limit-on-size: As long as sufficient main memory is available, a process of any size
+                                can be
+                                accommodated.
+                            </li>
+                            <li>No-limit-on-number: As long as sufficient main memory is available, any number of
+                                processes can be
+                                accommodated.
+                            </li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li>
+                        Disadvantages:
+                        <ul>
+                            <li>Difficult-to-implement: It is more difficult to implement and has more overhead, as it
+                                is done
+                                during run time.
+                            </li>
+                            <li>External-fragmentation: External fragmentation is still an issue as once a process is
+                                executed and
+                                leaves the main memory, it leaves a hole behind. It might not be sufficient to load
+                                another process.
+                                .</li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
 
             <div>
